@@ -1,0 +1,154 @@
+Andersson CALLE VIERA 3521501
+Jacobo SANCHEZ 3520121
+
+EXERCICE 2 :
+Question 1 : 
+
+public class Bonjour{
+	public static void main(String[] args){
+		System.out.println("Bonjour!");
+	}
+}
+
+-La commande pour compiler cette classe est : 
+	javac Bonjour.java
+-Le fichier cree est : 
+	Bonjour.class
+-La commande pour executer cette classe est : 
+	java Bonjour
+-Non la classe n'est pas executee et le terminal affiche :
+	Erreur : impossible de trouver ou charger la classe principale Bonjour
+
+Question 2 : 
+
+- Bonjour.java:2: error: ';' expected
+	public s tatic void main(String[] args){
+	              ^
+1 error
+
+D'apres le message, l'erreur est a la meme ligne (la deuxieme), mais il detecte une "fin" de ligne et veut que l'on insere  un ";"
+
+- Bonjour.java:3: error: unclosed string literal
+		System.out.println("Bonjour!);
+		                   ^
+Bonjour.java:3: error: ';' expected
+		System.out.println("Bonjour!);
+		                              ^
+Bonjour.java:5: error: reached end of file while parsing
+}
+ ^
+3 errors
+
+Le compilateur signal qu'il n'a pas pu detecter la fin de la chaine de characteres car il n'y a pas de " fermant.
+
+_ Erreur : la méthode principale est introuvable dans la classe Bonjour, définissez la méthode principale comme suit :
+   public static void main(String[] args)
+ou une classe d'applications JavaFX doit étendre javafx.application.Application
+
+En mettant une majuscule, le compilateur ne detecte plus notre main, la compilation aboutit mais on ne peut pas executer notre programme car il n'y a pas de main pour interragir avec.
+
+- Bonjour.java:2: error: ';' expected
+	public static void Main(String[] args)
+	                                      ^
+Bonjour.java:5: error: class, interface, or enum expected
+}
+^
+2 errors
+
+Erreure lors de l'execution, si on suit ce que le compilateur dit, l'execution va echouer egalement.
+
+- Erreur : la méthode principale est introuvable dans la classe Bonjour, définissez la méthode principale comme suit :
+   public static void main(String[] args)
+ou une classe d'applications JavaFX doit étendre javafx.application.Application
+
+Compilation resussi mais probleme lors de l'execution.
+
+-  Erreur : la méthode principale est introuvable dans la classe Bonjour, définissez la méthode principale comme suit :
+   public static void main(String[] args)
+ou une classe d'applications JavaFX doit étendre javafx.application.Application
+
+Compilation resussi mais probleme lors de l'execution.
+
+EXERCICE 3: 
+Segment.java :
+public class Segment{
+  private int x,y;
+  public Segment(int extX,int extY){
+    x=extX;
+    y=extY;
+  }
+
+  public int longueur(){
+    if (x>y){
+      return x-y;
+    }
+    return y-x;
+  }
+  public String toString(){
+    return "segment ["+x+","+y+"]";
+  }
+}
+
+TestSegment.java :
+public class TestSegment{
+  public static void main (String[] args){
+    int lseg1, lseg2;
+    Segment s1= new Segment(6,8);
+    Segment s2= new Segment(12,5);
+    lseg2=s1.longueur();
+    lseg2=s2.longueur();
+    if (lseg1>lseg2){
+      System.out.println("Le "+s1.toString()+" est plus long");
+    }
+    else{
+      System.out.println("Le "+s2.toString()+" est plus long");
+    }
+
+  }
+}
+
+
+
+EXERCICE 4:
+Question 1:
+
+Le nom du fichier doit etre le meme que celui de la classe avec la premiere lettre en majuscule, ie: Villageois.java
+
+Question 3:
+
+Le nom du fichier doit etre le meme que celui de la classe avec la premiere lettre en majuscule, ie: TestVillageois.java
+
+Villageois.java:
+public class Villageois{
+	private String nom;
+	private double poids;
+	private boolean malade;
+	
+	public Villageois(String nomVillageois){
+		nom = nomVillageois;
+		poids = Math.random()*100 + 50;
+		malade = Math.random() < 0.20;
+	}
+	
+	public String toString(){
+		if(malade){
+			return "Le villageois "+nom+" pese "+poids+" kg et il est malade.";
+		}
+		return "Le villageois "+nom+" pese "+poids+" kg et il n'est pas malade.";
+	}
+}
+
+TestVillageois:
+public class TestVillageois{
+
+	public static void main(String[] jaco){
+		Villageois v1 = new Villageois("Jacobo");
+		Villageois v2 = new Villageois("Jul");
+		Villageois v3 = new Villageois("Castor");
+		Villageois v4 = new Villageois("X");
+		System.out.println(v1.toString());
+		System.out.println(v2.toString());
+		System.out.println(v3.toString());
+		System.out.println(v4.toString());
+	}
+}

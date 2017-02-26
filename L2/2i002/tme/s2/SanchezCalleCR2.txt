@@ -1,0 +1,148 @@
+ Exercice 7:
+ Complexe.java
+ public class Complexe{
+   private double reelle, imag;
+   public Complexe(double reelle, double imag){
+     this.reelle=reelle;
+     this.imag=imag;
+   }
+   public Complexe(){
+     this.reelle=-2+ Math.random() *4;
+     this.imag=-2+Math.random()*4;
+   }
+   public String toString(){
+     return this.reelle+" + "+this.imag+" i";
+   }
+   public Complexe addition(Complexe b){
+     Complexe retour=new Complexe(reelle+b.reelle,this.imag+b.imag);
+     return retour;
+   }
+   public Complexe multiplication(Complexe b){
+     Complexe retour= new Complexe(this.reelle*b.reelle-(this.imag*b.imag),this.reelle*b.imag+this.imag*b.reelle);
+     return retour;
+   }
+   public boolean estReel(){
+     return (this.imag==0.0);
+   }
+ }
+
+
+TestComplexe.java:
+public class TestComplexe{
+  public static void main(String[] args){
+    Complexe a= new Complexe(1,1);
+    Complexe b= new Complexe(2,2);
+    Complexe c= new Complexe(3,1);
+    System.out.println(a.toString());
+    System.out.println(b.toString());
+    System.out.println(a.estReel());
+    System.out.println(b.estReel());
+    c=a.addition(b);
+    System.out.println(c.toString());
+    c=a.multiplication(b);
+    System.out.println(c.toString());
+  }
+}
+/*
+1.0 + 1.0 i
+2.0 + 2.0 i
+false
+false
+3.0 + 3.0 i
+0.0 + 4.0 i
+*/
+
+
+javac *.java && java TestComplexe
+
+
+Exercice coureur:
+public class Coureur{
+  private int nuDossard;
+  private double tempsAu100;
+  private boolean aLeTemoin;
+
+  public Coureur(int a){
+    nuDossard=a;
+    tempsAu100=12+Math.random()*4;
+    aLeTemoin=false;
+  }
+  public Coureur(){
+    this((int)(1+Math.random()*1000));
+  }
+  public int getNuDossard(){
+      return nuDossard;
+  }
+  public double getTempsAu100(){
+      return tempsAu100;
+  }
+  public boolean getALeTemoin(){
+      return aLeTemoin;
+  }
+  public void setALeTemoin(boolean b){
+      aLeTemoin=b;
+  }
+  public String toString(){
+      String a="non";
+      if(aLeTemoin){
+        a="oui";
+    }
+      return "Coureur "+nuDossard+" tempsAu100 : "+String.format("%.1f",tempsAu100)+"s au 100m aLeTemoin : "+a;
+  }
+  public void passeTemoin(Coureur c){
+      System.out.println("moi, coureur "+nuDossard+", je passe le témoin au coureur "+c.nuDossard);
+      aLeTemoin=false;
+      c.aLeTemoin=true;
+  }
+  public void courir(){
+      System.out.println("je suis le coureur "+nuDossard+" et je cours.");
+  }
+}
+
+public class TestCoureur{
+  public static void main(String[] args){
+    Coureur c1=new Coureur();
+    Coureur c2=new Coureur();
+    Coureur c3=new Coureur();
+    Coureur c4=new Coureur();
+    if(!c1.getALeTemoin())
+        c1.setALeTemoin(true);
+    c2.setALeTemoin(false);
+    c3.setALeTemoin(false);
+    c4.setALeTemoin(false);
+    c1.courir();
+    c1.passeTemoin(c2);
+    c2.courir();
+    c2.passeTemoin(c3);
+    c3.courir();
+    c3.passeTemoin(c4);
+    c4.courir();
+    double temps=c1.getTempsAu100()+c2.getTempsAu100()+c3.getTempsAu100()+c4.getTempsAu100();
+    System.out.println("Temps du 400: "+String.format("%.1f",temps));
+  }
+}
+
+
+Exercice 9:
+public classe Point{
+    private int posx,posy;
+    public Point(int abs,int ord){
+        posx=abs;
+        posy=ord;
+    }
+    public Point(){
+        this(1,1);
+    }
+    public setPosx(int a){
+        posx=a;
+    }
+    public setPosy(int a){
+        posy=a;
+    }
+    public getPosx(){
+        return posx;
+    }
+    public getPosy(){
+        return posy;
+    }
+}
