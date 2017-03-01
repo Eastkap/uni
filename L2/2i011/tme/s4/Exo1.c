@@ -240,25 +240,30 @@ void matrixVectorProduct(double *v, double *A, double *u, unsigned int m, unsign
 }
 
 void matrixMatrixProduct(double *C, double *A, double *B, unsigned int m, unsigned int n, unsigned int p){
-	unsigned int i,j;
+
+	unsigned int i,j,bornesup=m*p, colonne, ligne;
+	for(i=0;i<bornesup;i++){// on itere sur la matrice c
+		colonne=i%n; //on trouve sur quelle colonne on est
+		ligne=(i-colonne)/n; //on trouve sur quelle ligne on est
+		C[i]=0;
+		for(j=0;j<n;j++){
+			C[i]+=A[(ligne*n)+j]*B[(n*j)+colonne];
+		}
+	}
+
+	// on multiplie A par chaque colonne de B, le resultat ecrase donc la jieme colonne de C
+	/* recupere la colonne de B p fois
+	une fois quon la, on setMatrixColumn de C avec le produit de A par B
 	double *vector=allocateVector(n), *aide=allocateVector(n);
 	for(i=0;i<p;i++){
 		// on recupere la ieme colonne de B
 		for(j=0;j<n;j++){
 			vector[j]=B[i+j*p];
-		}/*
-		printf("AAA\n");
-		printVector(vector,n);
-		printf("AAA\n");*/
-		matrixVectorProduct(aide,A,vector,m,n);/*
-		printf("BB\n");
-		printVector(aide,n);
-		printf("BB\n");*/
+		}
+		matrixVectorProduct(aide,A,vector,m,n);
 		setMatrixColumn(C,aide,i,m,n);
 	}
-	// on multiplie A par chaque colonne de B, le resultat ecrase donc la jieme colonne de C
-	/* recupere la colonne de B p fois
-	une fois quon la, on setMatrixColumn de C avec le produit de A par B*/
+	*/
 }
 
 int main(){

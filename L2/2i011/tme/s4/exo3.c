@@ -217,7 +217,7 @@ int main(){
     solveSystemGauss(x,A,b,TAILLE);
     scaleVector(-1,x,TAILLE);
     addVector(delta,c,x,TAILLE);
-    printVector(delta,TAILLE);
+    //printVector(delta,TAILLE);
     printf("%.18e \n", maximumAbsVector(delta,TAILLE));
     freeVector(b);
     freeVector(x);
