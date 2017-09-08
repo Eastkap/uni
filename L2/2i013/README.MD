@@ -1,2 +1,2 @@
-Repo du projet Fréquentation des stations de transport et clustering spatiale
+Repo du projet Fréquentation des stations de transport et clustering spatial
 Fichiers à venir
